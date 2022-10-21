@@ -16,7 +16,7 @@ class Pago {
 
     public function __construct($array = [])
     {
-        $this->id = $array['id'] ; // ?? '' placeholder
+        $this->id = $array['id'] ?? NULL ; // ?? '' placeholder
         $this->mediodepago = $array['mediodepago'] ?? '';
         $this->valordepago = $array['valordepago'] ?? '';
         $this->descripcion = $array['descripcion'] ?? '';
