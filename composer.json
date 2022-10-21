@@ -1,0 +1,16 @@
+{
+    "name": "totos/micro-ecommerce",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Luis",
+            "email": "scarrone_luis@hotmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\" : "./classes"
+        }
+    }
+}
