@@ -4,8 +4,7 @@ namespace App;
 
 class Pago {
     // Base DE DATOS
-    protected static $tabla = 'pagoTable';
-    protected static $columnasDB = ['id', 'mediodepago', 'valordepago', 'descripcion'];
+    protected static $db;
 
     // Propiedades
     public $id;
@@ -27,10 +26,20 @@ class Pago {
 
     public function guardar() {
 
-        $query = "INSERT INTO pago (id, mediodepago, valordepago, descripcion, fecha) 
-        VALUES ('$this->id', '$this->mediodepago', '$this->valordepago', '$this->descripcion', '$this->fecha') "; 
+        //Ver cómo traer a atributos la id de la bd
         
-        debuguear($query);  
+        $query = "INSERT INTO pago (mediodepago, valordepago, descripcion, fecha) 
+        VALUES ('$this->mediodepago', '$this->valordepago', '$this->descripcion', '$this->fecha') "; 
+
+        self::$db->query($query);
+        //$resultado = self::$db->query($query);
+
+        //debuguear($resultado);
     }
 
-}
+    public static function setDB($database) {
+        self::$db = $database;
+    }
+
+    //pendiente sanitizar entradas
+}   
