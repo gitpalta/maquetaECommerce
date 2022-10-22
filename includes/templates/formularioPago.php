@@ -1,19 +1,18 @@
 
 <fieldset>
     <legend>Información de Pago</legend>
-        <input type="hidden" name="id" value="<?php echo ( $pago->id ); ?>" />
     <div>
-        <label for="Medio de Pago">medio de Pago</label> <!--(agregar option con tarjetas? ) -->
-        <input type="text" id="mediodepago" name="mediodepago" placeholder="medio de Pago" value="<?php echo ( $pago->mediodepago ); ?>">
+        <label for="Medio de Pago">medio de Pago</label> <!--(Mobbex es el método de pago ) -->
+        <input type="text" id="mediodepago" name="mediodepago" placeholder="medio de Pago" value="">
     </div>
 
     <div>
         <label for="valordepago">valordepago:</label>
-        <input type="number" id="valordepago" name="valordepago" placeholder="0000" value="<?php echo ( $pago->valordepago ); ?>">
+        <input type="number" id="valordepago" name="valordepago" placeholder="0000" value="">
     </div>
 
     <div>
         <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion"><?php echo ( $pago->descripcion ); ?></textarea>
+        <textarea id="descripcion" name="descripcion"></textarea>
     </div>
 </fieldset>

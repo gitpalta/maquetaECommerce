@@ -12,7 +12,6 @@ require 'classes/curlClass.php';
 
 use App\Padre;
 
-
 $db = conectarDB();
 
 Padre::setDB($db);
