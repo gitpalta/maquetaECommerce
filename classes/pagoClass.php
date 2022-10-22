@@ -2,9 +2,7 @@
 
 namespace App;
 
-class Pago {
-    // Base DE DATOS
-    protected static $db;
+class Pago extends Padre {
 
     // Propiedades
     public $id;
@@ -19,7 +17,7 @@ class Pago {
         $this->mediodepago = $array['mediodepago'] ?? '';
         $this->valordepago = $array['valordepago'] ?? '';
         $this->descripcion = $array['descripcion'] ?? '';
-        $this->fecha = date('Y/m/d');
+        $this->fecha = date('Y/m/d h:i:s');
 
         //debuguear($array);  
     }
@@ -35,10 +33,6 @@ class Pago {
         //$resultado = self::$db->query($query);
 
         //debuguear($resultado);
-    }
-
-    public static function setDB($database) {
-        self::$db = $database;
     }
 
     //pendiente sanitizar entradas
