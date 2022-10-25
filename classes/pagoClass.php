@@ -33,7 +33,7 @@ class Pago extends Padre
         self::$db->query($query);
         //$resultado = self::$db->query($query);
 
-        //debuguear($resultado);
+        //debuguear(floatval($this->valordepago));
     }
 
     public function addData($table){
@@ -44,9 +44,10 @@ class Pago extends Padre
         $newTable = array
         (
             $this->mediodepago = $arrayTable["mediodepago"],
-            $this->valordepago = intval($arrayTable["valordepago"]),
+            $this->valordepago = floatval($arrayTable["valordepago"]),
             $this->descripcion = $arrayTable["descripcion"],
-        );     
+        );
+        //debuguear($newTable[1]);
         return $newTable;
     }
 

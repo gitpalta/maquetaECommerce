@@ -6,22 +6,30 @@ class Curl
 {
     protected $apiUrl = 'https://api.mobbex.com/p/checkout';
     protected $method = '$_POST';
-    public $body = array(
-        'total' => 100.10,
-        'description' => 'prueba',
+    public $body = [''];
+
+    public function bodyArray($array1, $array2) 
+    { 
+        $bodyArray = array
+        (
+        'total' => $array2[1],
+        'description' => $array2[2],
         'currency' => 'ARS',
         'test' => true,
         'reference' => '767527217974',
         'customer' => array(
-            'email' => '{$customer->email}',
-            'name' => 'cliente',
-            'identification' => '98654321'
-        )
-    );
+            'email' => $array1[0],
+            'name' => $array1[1],
+            'identification' => $array1[2]
+            )
+        );
+        return $bodyArray;
+    ;}
 
     public function curlMakeRequest()
     {
         $curl = curl_init(); // inicio sesion de curl
+        $body = $this->body;
 
         curl_setopt_array($curl, array( //setear parameteros
             CURLOPT_URL            => $this->apiUrl,
@@ -35,13 +43,13 @@ class Curl
             CURLOPT_TIMEOUT        => 30,
             CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST  => 'POST',
-            CURLOPT_POSTFIELDS     => json_encode($this->body), // Encodeado en json  Pasar datos del pago
+            CURLOPT_POSTFIELDS     => json_encode($body), // Encodeado en json  Pasar datos del pago
         ));
 
         // debuguearjson($this->apiUrl);
         // debuguearjson($this->header);
         // debuguearjson($this->method);
-        debuguearjson($this->body);
+        //debuguearjson($this->body);
         
 
         $response = curl_exec($curl); //lo que devuelve mobbex (url, idckout, ...)
@@ -59,4 +67,5 @@ class Curl
         //echo $response;
         return json_decode($response, true);
     }
+
 }

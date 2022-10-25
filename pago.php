@@ -29,6 +29,9 @@
 
         $dataPago = $pago->addData('pago');
         debuguearNoExit($dataPago);
+
+        $curlData->body = $curlData->bodyArray($dataCustomer, $dataPago);
+        debuguearNoExit($curlData->body);
         
         $resultado = $curlData->curlMakeRequest();
         debuguear($resultado);

@@ -52,5 +52,4 @@ class Padre
             //debuguearNoExit($dataArray);
             return $dataArray;
         }
-
 }

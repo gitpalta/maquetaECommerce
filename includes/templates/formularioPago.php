@@ -8,7 +8,7 @@
 
     <div>
         <label for="valordepago">valordepago:</label>
-        <input type="number" id="valordepago" name="valordepago" placeholder="0000" value="">
+        <input type="number" step="0.01" id="valordepago" name="valordepago" placeholder="0000" value="">
     </div>
 
     <div>
