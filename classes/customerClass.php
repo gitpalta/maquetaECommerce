@@ -2,16 +2,17 @@
 
 namespace App;
 
-class Customer extends Padre{
+class Customer extends Padre
+{
 
     public $id;
     public $email;
     public $nombre;
     public $identificacion;
+    public $table;
 
     public function __construct($array = [])
     {
-        $this->id = $array['id'] ?? NULL ;
         $this->email = $array['email'] ?? '';
         $this->nombre = $array['nombre'] ?? '';
         $this->identificacion = $array['identificacion'] ?? '';
@@ -34,5 +35,20 @@ class Customer extends Padre{
         //debuguear($resultado);
     }
 
+    public function addData($table){
+
+        $customerTable = self::consulta($table);
+        //debuguearNoExit($customerTable);
+   
+        $newTable = array
+        (
+            $this->email = $customerTable["email"] ,
+            $this->nombre = $customerTable["nombre"] ,
+            $this->identificacion = $customerTable["identificacion"],
+        ); 
+        //debuguear($this->email);
+        return $newTable;
+        $newTable=[''];
+    }
     //pendiente sanitizar entradas
 }   

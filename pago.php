@@ -17,11 +17,22 @@
         
         $pago->guardar();
         $customer->guardar();
-        $resultado = $curlData->curlMakeRequest();
+
+        // $queryPago= $pago->consulta('pago');
+        // debuguearNoExit($queryPago);
+
+        // $queryCustomer= $customer->consulta('customer');
+        // debuguearNoExit($queryCustomer);
+
+        $dataCustomer = $customer->addData('customer');
+        debuguearNoExit($dataCustomer);
+
+        $dataPago = $pago->addData('pago');
+        debuguearNoExit($dataPago);
         
-        //debuguear($pago);  
+        $resultado = $curlData->curlMakeRequest();
+        debuguear($resultado);
     }
-    
     $db = conectarDB();
 
     incluirTemplate('header');

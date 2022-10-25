@@ -12,7 +12,19 @@ function debuguear( $variable ){
     echo "<pre>";
     var_dump($variable);
     echo "</pre>";
+
     exit;
+}
+function debuguearNoExit( $variable ){
+    echo "<pre>";
+    var_dump($variable);
+    echo "</pre>";
+}
+
+function debuguearjson($variable){
+    echo "<pre>";
+    echo json_encode($variable);
+    echo "</pre>";
 }
 
 ?>

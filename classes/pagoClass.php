@@ -2,7 +2,8 @@
 
 namespace App;
 
-class Pago extends Padre {
+class Pago extends Padre 
+{
 
     // Propiedades
     public $id;
@@ -10,16 +11,16 @@ class Pago extends Padre {
     public $valordepago;
     public $descripcion;
     public $fecha;
+    public $table;
 
     public function __construct($array = [])
     {
-        $this->id = $array['id'] ?? NULL ; // ?? '' placeholder
         $this->mediodepago = $array['mediodepago'] ?? '';
         $this->valordepago = $array['valordepago'] ?? '';
         $this->descripcion = $array['descripcion'] ?? '';
         $this->fecha = date('Y/m/d h:i:s');
 
-        //debuguear($array);  
+        //debuguear($this->mediodepago);  
     }
 
     public function guardar() {
@@ -33,6 +34,20 @@ class Pago extends Padre {
         //$resultado = self::$db->query($query);
 
         //debuguear($resultado);
+    }
+
+    public function addData($table){
+
+        $arrayTable = self::consulta($table);
+        //debuguear($arrayTable);
+   
+        $newTable = array
+        (
+            $this->mediodepago = $arrayTable["mediodepago"],
+            $this->valordepago = intval($arrayTable["valordepago"]),
+            $this->descripcion = $arrayTable["descripcion"],
+        );     
+        return $newTable;
     }
 
     //pendiente sanitizar entradas

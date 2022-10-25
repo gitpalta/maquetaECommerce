@@ -4,14 +4,8 @@ namespace App;
 
 class Curl
 {
-
-    public $apiUrl = 'https://api.mobbex.com/p/checkout';
-    public $header = [
-        'x-api-key' => 'zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj',
-        'x-access-token' => 'd31f0721-2f85-44e7-bcc6-15e19d1a53cc',
-        'Content-Type' => 'application/json'
-    ];
-    public $method = '$_POST';
+    protected $apiUrl = 'https://api.mobbex.com/p/checkout';
+    protected $method = '$_POST';
     public $body = array(
         'total' => 100.10,
         'description' => 'prueba',
@@ -19,7 +13,7 @@ class Curl
         'test' => true,
         'reference' => '767527217974',
         'customer' => array(
-            'email' => 'email@email.com',
+            'email' => '{$customer->email}',
             'name' => 'cliente',
             'identification' => '98654321'
         )
@@ -31,7 +25,11 @@ class Curl
 
         curl_setopt_array($curl, array( //setear parameteros
             CURLOPT_URL            => $this->apiUrl,
-            CURLOPT_HTTPHEADER     => $this->header,
+            CURLOPT_HTTPHEADER     =>  array(
+                'x-api-key: zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj',
+                'x-access-token: d31f0721-2f85-44e7-bcc6-15e19d1a53cc',
+                'Content-Type: application/json'
+              ),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_MAXREDIRS      => 10,
             CURLOPT_TIMEOUT        => 30,
@@ -40,7 +38,11 @@ class Curl
             CURLOPT_POSTFIELDS     => json_encode($this->body), // Encodeado en json  Pasar datos del pago
         ));
 
-        //debuguear($this->body);
+        // debuguearjson($this->apiUrl);
+        // debuguearjson($this->header);
+        // debuguearjson($this->method);
+        debuguearjson($this->body);
+        
 
         $response = curl_exec($curl); //lo que devuelve mobbex (url, idckout, ...)
         $error    = curl_error($curl);
@@ -48,14 +50,13 @@ class Curl
         curl_close($curl);
 
         //debuguear($error);
-        //string(63) "SSL certificate problem: unable to get local issuer certificate"
 
         //Throw curl errors
         if ($error) {
             //agregar redireccion
             return false;
         }
-        //debuguear($response);
+        //echo $response;
         return json_decode($response, true);
     }
 }
