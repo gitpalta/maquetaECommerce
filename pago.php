@@ -24,9 +24,9 @@
         $curlData->body = $curlData->bodyArray($dataCustomer, $dataPago);
         
         $resultado = $curlData->curlMakeRequest();
-        
+
         $url = $resultado["data"]["url"];
-;
+        
         redirect($url);
 
     }
