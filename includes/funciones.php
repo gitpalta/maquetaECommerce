@@ -27,4 +27,13 @@ function debuguearjson($variable){
     echo "</pre>";
 }
 
+function redirect($url){
+    if($url)
+    {
+      return header('location:'. $url);
+    }else{
+        return "Can't redirect";
+        exit;
+    };
+}
 ?>

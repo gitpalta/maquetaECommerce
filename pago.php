@@ -1,40 +1,34 @@
 <?php
     require 'includes/app.php';
-    //incluir use
 
     use App\Pago;
     use App\Customer;
     use App\Curl;
 
 
-    // Ejecutar el código después de que el usuario envia el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST') {   
-        //incluir objetos
+
         $pago = new Pago($_POST);
         $customer = new Customer($_POST);
         $curlData = new Curl;
 
         
         $pago->guardar();
+
         $customer->guardar();
 
-        // $queryPago= $pago->consulta('pago');
-        // debuguearNoExit($queryPago);
-
-        // $queryCustomer= $customer->consulta('customer');
-        // debuguearNoExit($queryCustomer);
-
         $dataCustomer = $customer->addData('customer');
-        debuguearNoExit($dataCustomer);
 
         $dataPago = $pago->addData('pago');
-        debuguearNoExit($dataPago);
 
         $curlData->body = $curlData->bodyArray($dataCustomer, $dataPago);
-        debuguearNoExit($curlData->body);
         
         $resultado = $curlData->curlMakeRequest();
-        debuguear($resultado);
+        
+        $url = $resultado["data"]["url"];
+;
+        redirect($url);
+
     }
     $db = conectarDB();
 
