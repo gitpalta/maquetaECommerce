@@ -2,8 +2,8 @@
 <fieldset>
     <legend>Información de Pago</legend>
     <div>
-        <label for="Medio de Pago">medio de Pago</label> <!--(Mobbex es el método de pago ) -->
-        <input type="text" id="mediodepago" name="mediodepago" placeholder="medio de Pago" value="">
+        <label for="referencia">Nro de Referencia</label>
+        <input type="number" id="referencia" name="referencia" placeholder="Factura o referencia" min = 99999999999 max= 999999999999 value="">
     </div>
 
     <div>

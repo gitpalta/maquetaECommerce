@@ -7,7 +7,7 @@ class Pago extends Padre
 
     // Propiedades
     public $id;
-    public $mediodepago;
+    public $referencia;
     public $valordepago;
     public $descripcion;
     public $fecha;
@@ -15,25 +15,25 @@ class Pago extends Padre
 
     public function __construct($array = [])
     {
-        $this->mediodepago = $array['mediodepago'] ?? '';
+        $this->referencia = 0;
         $this->valordepago = $array['valordepago'] ?? '';
         $this->descripcion = $array['descripcion'] ?? '';
         $this->fecha = date('Y/m/d h:i:s');
 
-        //debuguear($this->mediodepago);  
+        //debuguear($this->referencia);  
     }
 
     public function guardar() {
 
         //Ver cómo traer a atributos la id de la bd
         
-        $query = "INSERT INTO pago (mediodepago, valordepago, descripcion, fecha) 
-        VALUES ('$this->mediodepago', '$this->valordepago', '$this->descripcion', '$this->fecha') "; 
+        $query = "INSERT INTO pago (referencia, valordepago, descripcion, fecha) 
+        VALUES ('$this->referencia', '$this->valordepago', '$this->descripcion', '$this->fecha') "; 
 
+        //debuguear($query);
         self::$db->query($query);
         //$resultado = self::$db->query($query);
 
-        //debuguear(floatval($this->valordepago));
     }
 
     public function addData($table){
@@ -43,7 +43,7 @@ class Pago extends Padre
    
         $newTable = array
         (
-            $this->mediodepago = $arrayTable["mediodepago"],
+            $this->referencia = $arrayTable["referencia"],
             $this->valordepago = floatval($arrayTable["valordepago"]),
             $this->descripcion = $arrayTable["descripcion"],
         );
